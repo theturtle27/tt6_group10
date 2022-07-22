@@ -3,6 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { errorHandler } from "./middlewares/errorMiddleware.js";
+import { userRoutes } from "./routes/userRoutes.js";
+
+// Set up express
+const app = express();
 
 // For the front end to request from the backend
 app.use(
@@ -19,10 +23,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/users", userRoutes);
-app.use("/api/wallets", walletRoutes);
-app.use("/api/transactions/", transactionRoutes);
-app.use("/api/currencies/", currenceiesRoutes);
-app.use("/api/exchangeRates/", exchangeRateRoutes);
+// app.use("/api/wallets", walletRoutes);
+// app.use("/api/transactions/", transactionRoutes);
+// app.use("/api/currencies/", currenceiesRoutes);
+// app.use("/api/exchangeRates/", exchangeRateRoutes);
 
 // Handling errors for unsupported routes
 app.use((req, res, next) => {
