@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ExchangePage.css'
-import axios from 'axios';
+import axios from 'axios'
 
 const PracticePage = () => {
 
@@ -155,8 +155,18 @@ const PracticePage = () => {
 		}
 	]
 
+    const exchangeAmountRef = useRef();
+
     useEffect(() => {
         //fetch API data
+         /* axios.post('http://localhost:8080', {
+                userID: '',
+                walletID: ''
+            }).then((res) => {
+                console.log(res);
+            }).catch((error) => {
+                console.log(error);
+            }); */
         setApiData(mockData);
 		setWalletData(mockWalletData);
     }, [])
@@ -179,7 +189,7 @@ const PracticePage = () => {
     const submitTransaction = (e) => {
         e.preventDefault();
         if(transactionData[0].operation === 'Buy'){
-            /* axios.post('http://localhost:8080', {
+            axios.post('http://localhost:8080/currency', {
                 base_currency: "SGD",
                 exchange_currency: transactionData[0].exchangeCurrency,
                 rate: transactionData[0].rate,
@@ -188,8 +198,10 @@ const PracticePage = () => {
                 console.log(res);
             }).catch((error) => {
                 console.log(error);
-            }); */
+            });
             console.log("Buy");
+            exchangeAmountRef.current.value = "";
+            setExchangeAmount("");
         }
         else if(transactionData[0].operation === 'Sell'){
             /* axios.post('http://localhost:8080', {
@@ -208,68 +220,84 @@ const PracticePage = () => {
 
     const cancelTransaction = (e) => {
         e.preventDefault();
+        exchangeAmountRef.current.value = "";
         setExchangeAmount("");
     }
 
     return (
 		<div className = 'Exchange-Page-Main-Container'>
-			<div className = 'Exchange-Page-Currency-Display'>
-				{
-					hasData ? 
-					<table>
-						<tbody>
-							<tr>
-								<td>Base Currency</td>
-								<td>Exchange Currency</td>
-								<td>Exchange Rate (Amount)</td>
-								<td>Buy</td>
-								<td>Sell</td>
-							</tr>
-							{apiData.map((currency) => (
-								<tr key = {currency.id}>
-									<td>{currency.base_currency}</td>
-									<td>{currency.exchange_currency}</td>
-									<td>{currency.rate}</td>
-									<td><button onClick = {handleBuy} value ={[currency.exchange_currency, "Buy", currency.rate]}>Buy</button></td>
-									<td><button onClick = {handleBuy} value ={[currency.exchange_currency, "Sell", currency.rate]}>Sell</button></td>
-								</tr>
-							))}
-						</tbody>
-					</table> : 
-					<p>null</p>
-				}
-			</div>
-            <div className = 'Exchange-Page-Transaction-Display'>
-                {
-                    popupStatus ? 
-                    <div>
-                        <h1>{transactionData[0].operation} Currency: {transactionData[0].exchangeCurrency}</h1>
-                        <form onSubmit = {submitTransaction}>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>{transactionData[0].operation}ing Currency:</td>
-                                        <td name = 'currencyType'>{transactionData[0].exchangeCurrency}</td>
+            <h1>Currency Exchange Page</h1>
+            <div className = 'Exchange-Page-Wallet-Display'>
+                {mockWalletData.map((wallet) => (
+                    <p className ='Wallet-Details'>
+                        {wallet.currency} {wallet.amount}
+                    </p>
+                ))}
+            </div>
+            <div className = 'Exchange-Page-Sub-Container'>
+                <div className = 'Exchange-Page-Transaction-Display'>
+                    {
+                        popupStatus ? 
+                        <div>
+                            <h2>{transactionData[0].operation} Currency: {transactionData[0].exchangeCurrency}</h2>
+                            <form onSubmit = {submitTransaction}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>{transactionData[0].operation}ing Currency:</td>
+                                            <td name = 'currencyType'>{transactionData[0].exchangeCurrency}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Exchange Rate:</td>
+                                            <td>{transactionData[0].rate}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amount You Wish To {transactionData[0].operation} (SGD):</td>
+                                            <td><input ref = {exchangeAmountRef} onChange = {amountOnChange} type = 'number' name = 'transactionAmount'></input></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amount You Will Get ({transactionData[0].exchangeCurrency}):</td>
+                                            <td>{eval(exchangeAmount / transactionData[0].rate).toString()}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type = 'submit' className = 'common-Button confirm-form-button'>Confirm</button>
+                                <button className = 'common-Button cancel-form-button' onClick = {cancelTransaction} name = "cancelTransaction">Cancel</button>
+                            </form>
+                        </div> : 
+                        <div className = 'Exchange-Page-Placeholder'>
+                           <h3 className = 'Exchange-Page-Error'> Select a currency on the left to display the exchange menu</h3>
+                        </div>
+                    }
+                </div>
+                <div className = 'Exchange-Page-Currency-Display'>
+                    {
+                        hasData ? 
+                        <table className = 'Exchange-Currency-Table'>
+                            <thead>
+                                <tr>
+                                        <th>Base Currency</th>
+                                        <th>Exchange Currency</th>
+                                        <th>Exchange Rate</th>
+                                        <th>Buy</th>
+                                        <th>Sell</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {apiData.map((currency) => (
+                                    <tr key = {currency.id}>
+                                        <td>{currency.base_currency}</td>
+                                        <td>{currency.exchange_currency}</td>
+                                        <td>{currency.rate}</td>
+                                        <td><button className = "Exchange-Page-Buy-Button common-Button" onClick = {handleBuy} value ={[currency.exchange_currency, "Buy", currency.rate]}>Buy</button></td>
+                                        <td><button className = "Exchange-Page-Sell-Button common-Button"onClick = {handleBuy} value ={[currency.exchange_currency, "Sell", currency.rate]}>Sell</button></td>
                                     </tr>
-                                    <tr>
-                                        <td>Exchange Rate:</td>
-                                        <td>{transactionData[0].rate}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Amount You Wish To Buy (SGD):</td>
-                                        <td><input onChange = {amountOnChange} type = 'number'name = 'transactionAmount'></input></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Amount You Will Get ({transactionData[0].exchangeCurrency}):</td>
-                                        <td>{eval(exchangeAmount / transactionData[0].rate).toString()}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button type = 'submit'>Confirm</button>
-                            <button onClick = {cancelTransaction}>Cancel</button>
-                        </form>
-                    </div> : null
-                }
+                                ))}
+                            </tbody>
+                        </table> : 
+                        <h2 className = 'Exchange-Page-Error'>Error: No Currency Returned</h2>
+                    }
+                </div>
             </div>
 		</div>
     )
