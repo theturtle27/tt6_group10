@@ -3,57 +3,30 @@ import React from "react";
 function Home() {
   return (
     <React.Fragment>
-      <div
-        className="w3-container w3-center w3-blue"
-        style={{ padding: "2rem" }}
-      >
-        <h1 className="w3-jumbo">Walletr - Multi-Currency Wallet</h1>
-        <button className="w3-button w3-pink" style={{ marginRight: "1rem" }}>
-          Login
-        </button>
-        <button className="w3-button w3-pink">Register</button>
+      <div className="w3-container w3-center" style={{ padding: "2rem" }}>
+        <h1 className="w3-card w3-left w3-black" style={{ marginTop: "2rem" }}>
+          {" "}
+          We're live in Singapore
+        </h1>
+        <h1 className="w3-jumbo">Walletr - Multi-Currency Digital Wallet</h1>
       </div>
 
       <div
         className="w3-container w3-blue"
         style={{ padding: "2rem", marginTop: "2rem" }}
       >
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          consectetur libero nibh, non sodales urna malesuada nec. Sed tortor
-          eros, blandit eget fringilla at, gravida a nibh. Etiam dui nulla,
-          aliquam vitae purus a, auctor malesuada arcu. Vestibulum venenatis
-          orci nisl, sed elementum leo tincidunt eget. Nullam convallis nisi in.
-        </p>
+        <h2>Send Money Instantly</h2>
+        <p>With 34 locations and 56 countries</p>
       </div>
 
-      <div
-        className="w3-container w3-blue"
-        style={{ padding: "2rem", marginTop: "2rem" }}
-      >
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          consectetur libero nibh, non sodales urna malesuada nec. Sed tortor
-          eros, blandit eget fringilla at, gravida a nibh. Etiam dui nulla,
-          aliquam vitae purus a, auctor malesuada arcu. Vestibulum venenatis
-          orci nisl, sed elementum leo tincidunt eget. Nullam convallis nisi in.
-        </p>
+      <div className="w3-container w3-white" style={{ padding: "2rem" }}>
+        <h2>Introducing Wallet Earn</h2>
+        <p>Get interest credited to you wallet everyday</p>
       </div>
 
-      <div
-        className="w3-container w3-blue"
-        style={{ padding: "2rem", marginTop: "2rem" }}
-      >
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          consectetur libero nibh, non sodales urna malesuada nec. Sed tortor
-          eros, blandit eget fringilla at, gravida a nibh. Etiam dui nulla,
-          aliquam vitae purus a, auctor malesuada arcu. Vestibulum venenatis
-          orci nisl, sed elementum leo tincidunt eget. Nullam convallis nisi in.
-        </p>
+      <div className="w3-container w3-black" style={{ padding: "2rem" }}>
+        <h2>Best Forex Rates</h2>
+        <p>With fees as low as 0.1%</p>
       </div>
     </React.Fragment>
   );
