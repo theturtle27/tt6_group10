@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 
 import { errorHandler } from "./middlewares/errorMiddleware.js";
 import { userRoutes } from "./routes/userRoutes.js";
+import { currencyRoutes } from "./routes/currencyRoutes.js";
+import { exchangeRateRoutes } from "./routes/exchangeRateRoutes.js";
+import { walletRoutes } from "./routes/walletRoutes.js";
+import { transactionRoutes } from "./routes/transactionRoutes.js";
 
 // Set up express
 const app = express();
@@ -23,10 +27,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/users", userRoutes);
-// app.use("/api/wallets", walletRoutes);
-// app.use("/api/transactions/", transactionRoutes);
-// app.use("/api/currencies/", currenceiesRoutes);
-// app.use("/api/exchangeRates/", exchangeRateRoutes);
+app.use("/api/wallets", walletRoutes);
+app.use("/api/transactions/", transactionRoutes);
+app.use("/api/currencies/", currencyRoutes);
+app.use("/api/exchangeRates/", exchangeRateRoutes);
 
 // Handling errors for unsupported routes
 app.use((req, res, next) => {
