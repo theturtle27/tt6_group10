@@ -8,17 +8,17 @@ class Register extends Component {
   register = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/register", {
+      .post("http://localhost:5000/api/users/register", {
         name: document.getElementById("name").value,
         username: document.getElementById("username").value,
-        pwd: document.getElementById("password").value,
+        password: document.getElementById("password").value,
       })
       .then((res) => {
         console.log(res.data);
         if (res.data.error) {
           this.setState({ err: res.data.error });
         } else {
-          this.setState({ register: true });
+          window.location = "/login";
         }
       });
   };

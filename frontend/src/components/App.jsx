@@ -6,6 +6,7 @@ import ExchangePage from "../components/ExchangePage";
 import Login from "./Login";
 import Register from "./Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { check } from "../login";
 
 function App() {
   return (
@@ -13,7 +14,11 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route
+            path="/"
+            exact
+            element={check() ? <ExchangePage /> : <Home />}
+          />
           <Route path="/exchange" exact element={<ExchangePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

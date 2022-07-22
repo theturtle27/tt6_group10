@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { login } from "../login";
+import Alert from "./Alert";
 
 class Login extends Component {
+  state = { err: "" };
+
   login = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/login", {
-        username: document.getElementById("username").value,
-        pwd: document.getElementById("password").value,
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
+    login(
+      document.getElementById("username").value,
+      document.getElementById("password").value
+    ).then((r) => {
+      if (r === true) {
+        window.location = "/";
+      } else {
+        this.setState({ err: r });
+      }
+    });
   };
 
   render() {
@@ -19,6 +25,11 @@ class Login extends Component {
       <div className="w3-card-4" style={{ margin: "2rem" }}>
         <div className="w3-container w3-blue w3-center w3-xlarge">LOGIN</div>
         <div className="w3-container">
+          {this.state.err.length > 0 && (
+            <Alert
+              message={`Check your form and try again! (${this.state.err})`}
+            />
+          )}
           <form onSubmit={this.login}>
             <p>
               <label htmlFor="username">Username</label>
@@ -36,6 +47,7 @@ class Login extends Component {
               <button type="submit" class="w3-button w3-blue">
                 Login
               </button>
+              {this.state.login && "You're logged in!"}
             </p>
           </form>
         </div>
