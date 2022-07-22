@@ -1,5 +1,4 @@
 import React from "react";
-import ExchangePage from "../components/ExchangePage";
 
 function Navbar() {
   return (
@@ -7,7 +6,7 @@ function Navbar() {
       <a className="w3-bar-item w3-button" href="/">
         Walletr
       </a>
-      <a className="w3-bar-item w3-button" href="/exchange" Element = {<ExchangePage/>}>
+      <a className="w3-bar-item w3-button" href="/exchange">
         Exchange
       </a>
       <div style={{ float: "right" }}>
