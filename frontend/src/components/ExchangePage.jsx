@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ExchangePage.css'
+import axios from 'axios';
 
 const PracticePage = () => {
 
@@ -154,7 +155,6 @@ const PracticePage = () => {
 		}
 	]
 
-
     useEffect(() => {
         //fetch API data
         setApiData(mockData);
@@ -178,12 +178,37 @@ const PracticePage = () => {
 
     const submitTransaction = (e) => {
         e.preventDefault();
-        console.log("transact");
+        if(transactionData[0].operation === 'Buy'){
+            /* axios.post('http://localhost:8080', {
+                base_currency: "SGD",
+                exchange_currency: transactionData[0].exchangeCurrency,
+                rate: transactionData[0].rate,
+                amount: exchangeAmount
+            }).then((res) => {
+                console.log(res);
+            }).catch((error) => {
+                console.log(error);
+            }); */
+            console.log("Buy");
+        }
+        else if(transactionData[0].operation === 'Sell'){
+            /* axios.post('http://localhost:8080', {
+                base_currency: "SGD",
+                exchange_currency: transactionData[0].exchangeCurrency,
+                rate: transactionData[0].rate,
+                amount: exchangeAmount
+            }).then((res) => {
+                console.log(res);
+            }).catch((error) => {
+                console.log(error);
+            }); */
+            console.log("Sell");
+        }
     }
 
     const cancelTransaction = (e) => {
         e.preventDefault();
-        console.log("cancel");
+        setExchangeAmount("");
     }
 
     return (
@@ -224,7 +249,7 @@ const PracticePage = () => {
                                 <tbody>
                                     <tr>
                                         <td>{transactionData[0].operation}ing Currency:</td>
-                                        <td>{transactionData[0].exchangeCurrency}</td>
+                                        <td name = 'currencyType'>{transactionData[0].exchangeCurrency}</td>
                                     </tr>
                                     <tr>
                                         <td>Exchange Rate:</td>
@@ -232,7 +257,7 @@ const PracticePage = () => {
                                     </tr>
                                     <tr>
                                         <td>Amount You Wish To Buy (SGD):</td>
-                                        <td><input onChange = {amountOnChange}></input></td>
+                                        <td><input onChange = {amountOnChange} type = 'number'name = 'transactionAmount'></input></td>
                                     </tr>
                                     <tr>
                                         <td>Amount You Will Get ({transactionData[0].exchangeCurrency}):</td>
