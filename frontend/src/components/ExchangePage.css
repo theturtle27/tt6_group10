@@ -1,16 +1,104 @@
 .Exchange-Page-Main-Container{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     width: 80%;
     margin: auto;
-    padding-top: 50px;
+}
+
+.Exchange-Page-Sub-Container{
+    padding-top: 25px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    margin: auto;
 }
 
 .Exchange-Page-Currency-Display{
     width: 50%;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .Exchange-Page-Transaction-Display{
     width: 50%;
+    padding-left: 25px;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.Exchange-Currency-Table th{
+    text-align: center;
+    width: 150px;
+    border-bottom: 1px solid black;
+}
+
+.Exchange-Currency-Table td{
+    text-align: center;
+}
+
+.Exchange-Currency-Table tr{
+    border-bottom: 1px solid black;
+}
+
+.common-Button{
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 15px 32px;
+}
+
+.common-Button:hover{
+    background: grey;
+}
+
+.Exchange-Page-Buy-Button, .confirm-form-button{
+    background-color: lightgreen;
+}
+
+.Exchange-Page-Sell-Button, .cancel-form-button{
+    background-color: lightpink;
+}
+
+.Exchange-Page-Error{
+    padding-left: 25px;
+}
+
+.Exchange-Page-Placeholder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.Exchange-Page-Transaction-Display{
+}
+
+.Exchange-Page-Transaction-Display td{
+
+}
+
+.cancel-form-button, .confirm-form-button{
+    margin-top: 10px;
+}
+
+.cancel-form-button{
+    margin-left: 10px;
+}
+
+.Exchange-Page-Wallet-Display{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Wallet-Details{
+    margin-right: 15px;
+    width: 15%;
+    border: 1px solid black;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
