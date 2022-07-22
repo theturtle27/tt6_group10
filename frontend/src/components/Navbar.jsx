@@ -6,6 +6,9 @@ function Navbar() {
       <a className="w3-bar-item w3-button" href="/">
         Walletr
       </a>
+      <a className="w3-bar-item w3-button" href="/exchange">
+        Exchange
+      </a>
       <div style={{ float: "right" }}>
         <a className="w3-bar-item w3-button" href="/login">
           {" "}

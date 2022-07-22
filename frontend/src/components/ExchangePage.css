@@ -1,0 +1,16 @@
+.Exchange-Page-Main-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.Exchange-Page-Currency-Display{
+    width: 50%;
+}
+
+.Exchange-Page-Transaction-Display{
+    width: 50%;
+}
