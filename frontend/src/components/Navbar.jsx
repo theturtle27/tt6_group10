@@ -12,11 +12,11 @@ function Navbar() {
       <div style={{ float: "right" }}>
         <a className="w3-bar-item w3-button" href="/login">
           {" "}
-          // Updated Login
+          Login
         </a>
         <a className="w3-bar-item w3-button" href="/register">
           {" "}
-          // Updated Register
+          Register
         </a>
       </div>
     </div>

@@ -7,15 +7,14 @@ import Login from "./Login";
 import Register from "./Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-
 function App() {
   return (
     <React.Fragment>
       <Router>
         <Navbar />
         <Routes>
-          <Route path = '/' exact element = {<Home />}/>
-          <Route path = '/exchange' exact element = {<ExchangePage />} />
+          <Route path="/" exact element={<Home />} />
+          <Route path="/exchange" exact element={<ExchangePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

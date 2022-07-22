@@ -8,7 +8,10 @@ function Home() {
           {" "}
           We're live in Singapore
         </h1>
-        <h1 className="w3-jumbo">Walletr - Multi-Currency Digital Wallet</h1>
+        <h1 className="w3-jumbo">WalletR</h1>
+        <h2 className="w3-jumbo w3-right w3-lightblue">
+          Multi Currency Digital Wallet
+        </h2>
       </div>
 
       <div
